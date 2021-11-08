@@ -15,5 +15,5 @@ pp= makima(xHA,yHA);
 m= ppval(pp, xRHA);
 
 plot(xRHA,m,'r');hold on, grid on,title ('Abducción Hombro')
-plot(xHF,yREF1);hold on
-plot(xHF,yREF2);
+plot(xHA,yREF1);hold on
+plot(xHA,yREF2);
