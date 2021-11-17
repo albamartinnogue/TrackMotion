@@ -14,6 +14,6 @@ pp= makima(xCS,yCS);
 
 m= ppval(pp, xRCS);
 
-plot(xRCS,m);hold on, grid on, title ('Flexión Hombro')
+plot(xRCS,m);hold on, grid on, title ('Supinacion Codo')
 plot(xCS,yREF1);hold on
 plot(xCS,yREF2);
