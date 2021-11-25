@@ -2,7 +2,10 @@ function CreacionAvatar(YPRhombro,YPRcodo,YPRwrist)
 % YPRwrist = [pronosupinacion,flexoextension,0]
 % YPRcodo = [0,0,flexion]
 % YPRhombro = [rotacion,abduccion,flexoextension]
-% cadenaCinematica([30,0,15],[15,10,15],[0,0,45],[0,34,0]);
+% cadenaCinematica([R,A,F],[S,0,F],[0,A,F]);
+%                   Hombro Codo     Muñeca
+%0 = creo R= rotacion A= abduccion F=flexion
+
 
 %CREAMOS EL AVATAR
 f = [1 2 3 4; 5 6 7 8;1 2 6 5;2 3 7 6;3 4 8 7;4 1 5 8];
@@ -22,7 +25,7 @@ patch('faces',f,'vertices',mano,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',cuello,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',cabeza,'FaceVertexCData',color,'FaceColor','flat')
 
-view([180,3])
+view(3)
 axis image
 
 %CREAMOS MATRICES DE ROTACION 
@@ -31,6 +34,8 @@ axis image
 Rhombro = rotationMatrix(YPRhombro(1),YPRhombro(2),YPRhombro(3));
 Rcodo = rotationMatrix(YPRcodo(1),YPRcodo(2),YPRcodo(3));
 Rwrist = rotationMatrix(YPRwrist(1),YPRwrist(2),YPRwrist(3));
+
+%
 
 manoRotada = applyRotationNx3(applyRotationNx3(applyRotationNx3(mano,...
     sum(antebrazo(1:4,:))/4,Rwrist),sum(brazo(1:4,:))/4,Rcodo),(brazo(7,:)+brazo(8,:))/2,Rhombro);
@@ -53,7 +58,7 @@ patch('faces',f,'vertices',torso,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',cuello,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',cabeza,'FaceVertexCData',color,'FaceColor','flat')
 
-view([180,3])
+view(3)
 axis image
 
 end
