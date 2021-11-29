@@ -10,10 +10,10 @@ yREF2 = [100,100,100,100,100,100,100,100,100,100,100];
 xRCS = 0:0.001:1;
 
 %Para quitar los picos
-pp= makima(xCS,yCS);
+ppCS= makima(xCS,yCS);
 
-m= ppval(pp, xRCS);
+mCS= ppval(ppCS, xRCS);
 
-plot(xRCS,m);hold on, grid on, title ('Supinacion Codo')
+plot(xRCS,mCS);hold on, grid on, title ('Supinacion Codo')
 plot(xCS,yREF1);hold on
 plot(xCS,yREF2);

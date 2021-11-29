@@ -10,10 +10,10 @@ yREF2 = [100,100,100,100,100,100,100,100,100,100,100];
 xRHF = 0:0.001:1;
 
 %Para quitar los picos
-pp= makima(xHF,yHF);
+ppHF= makima(xHF,yHF);
 
-m= ppval(pp, xRHF);
+mHF= ppval(ppHF, xRHF);
 
-plot(xRHF,m);hold on, grid on, title ('Flexión Hombro')
+plot(xRHF,mHF);hold on, grid on, title ('Flexión Hombro')
 plot(xHF,yREF1);hold on
 plot(xHF,yREF2);

@@ -11,10 +11,10 @@ yREF2 = [150,150,150,150,150,150,150,150,150,150,150];
 xRCF = 0:0.001:1;
 
 %Para quitar los picos
-pp= makima(xCF,yCF);
+ppCF= makima(xCF,yCF);
 
-m= ppval(pp, xRCF);
+mCF= ppval(ppCF, xRCF);
 
-plot(xRCF,m,'g');hold on, grid on,title ('Flexión Codo')
+plot(xRCF,mCF,'g');hold on, grid on,title ('Flexión Codo')
 plot(xCF,yREF1);hold on
 plot(xCF,yREF2);

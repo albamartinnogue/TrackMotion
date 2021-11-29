@@ -9,10 +9,10 @@ yREF2 = [100,100,100,100,100,100,100,100,100,100,100];
 xRMA = 0:0.001:1;
 
 %Para quitar los picos
-pp= makima(xMA,yMA);
+ppMA= makima(xMA,yMA);
 
-m= ppval(pp, xRMA);
+mMA= ppval(ppMA, xRMA);
 
-plot(xRMA,m,'k');hold on, grid on,title ('Abducción muñeca')
+plot(xRMA,mMA,'k');hold on, grid on,title ('Abducción muñeca')
 plot(xMA,yREF1);hold on
 plot(xMA,yREF2);

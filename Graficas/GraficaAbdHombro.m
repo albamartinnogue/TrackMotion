@@ -10,10 +10,10 @@ yREF2 = [100,100,100,100,100,100,100,100,100,100,100];
 xRHA = 0:0.001:1;
 
 %Para quitar los picos
-pp= makima(xHA,yHA);
+ppHA= makima(xHA,yHA);
 
-m= ppval(pp, xRHA);
+mHA= ppval(ppHA, xRHA);
 
-plot(xRHA,m,'r');hold on, grid on,title ('Abducción Hombro')
+plot(xRHA,mHA,'r');hold on, grid on,title ('Abducción Hombro')
 plot(xHA,yREF1);hold on
 plot(xHA,yREF2);

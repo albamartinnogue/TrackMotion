@@ -10,10 +10,10 @@ yREF2 = [100,100,100,100,100,100,100,100,100,100,100];
 xRMF = 0:0.001:1;
 
 %Para quitar los picos
-pp= makima(xMF,yMF);
+ppMF= makima(xMF,yMF);
 
-m= ppval(pp, xRMF);
+mMF= ppval(ppMF, xRMF);
 
-plot(xRMF,m);hold on, grid on, title ('Flexion Muñeca')
+plot(xRMF,mMF);hold on, grid on, title ('Flexion Muñeca')
 plot(xMF,yREF1);hold on
 plot(xMF,yREF2);
