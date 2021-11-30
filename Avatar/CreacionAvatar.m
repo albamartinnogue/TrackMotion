@@ -5,6 +5,18 @@ function CreacionAvatar(YPRhombro,YPRcodo,YPRwrist)
 % cadenaCinematica([R,A,F],[S,0,F],[0,A,F]);
 %                   Hombro Codo     Muñeca
 %0 = creo R= rotacion A= abduccion F=flexion
+% CreacionAvatar([0,10,-40],[25,0,-67],[0,5,-27]); 1º movimiento
+% CreacionAvatar([0,14,-42],[28,0,-70],[0,6,-25]); 2º movimiento
+% CreacionAvatar([0,19,-45],[35,0,-89],[0,10,-23]); 3º movimiento
+% CreacionAvatar([0,26,-50],[42,0,-108],[0,12,-20]); 4º movimiento
+% CreacionAvatar([0,31,-56],[52,0,-115],[0,15,-21]); 5º movimiento
+% CreacionAvatar([0,33,-60],[51,0,-120],[0,16,-20]); 6º movimiento
+% CreacionAvatar([0,30,-56],[54,0,-115],[0,15,-22]); 7º movimiento
+% CreacionAvatar([0,26,-50],[25,0,-107],[0,12,-20]); 8º movimiento
+% CreacionAvatar([0,21,-45],[17,0,-83],[0,9,-23]); 9º movimiento
+% CreacionAvatar([0,16,-42],[10,0,-72],[0,6,-25]); 10º movimiento
+% CreacionAvatar([0,10,-40],[25,0,-67],[0,5,-27]); 11º movimiento
+
 
 
 %CREAMOS EL AVATAR
@@ -17,6 +29,7 @@ mano = [10,10,-10;10,20,-10;30,20,-10;30,10,-10;10,10,10;10,20,10;30,20,10;30,10
 cuello = [50,0,120;50,30,120;70,30,120;70,0,120;50,0,140;50,30,140;70,30,140;70,0,140];
 cabeza = [30,-10,140;30,40,140;90,40,140;90,-10,140;30,-10,180;30,40,180;90,40,180;90,-10,180];
 
+%{
 figure
 patch('faces',f,'vertices',torso,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',brazo,'FaceVertexCData',color,'FaceColor','flat')
@@ -27,6 +40,7 @@ patch('faces',f,'vertices',cabeza,'FaceVertexCData',color,'FaceColor','flat')
 
 view(3)
 axis image
+%}
 
 %CREAMOS MATRICES DE ROTACION 
 % Aplicamos una rotación del torso de 90 grados hacia la derecha
