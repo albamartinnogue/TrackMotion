@@ -1,4 +1,4 @@
-function [xmak,ymak,xnmak,ynmak] = AleatoriedadAbdHombro ( noise)
+function [xnHA,ynHA,mHA,xRHA] = AleatoriedadAbdHombro ( noise)
 %eje x de la señal
 %xvar = [x0, x1] que indica el valor maximo y minimo del final del eje x
 %y = señal
@@ -10,6 +10,8 @@ function [xmak,ymak,xnmak,ynmak] = AleatoriedadAbdHombro ( noise)
 %nueva x
 xHA = 0:0.1:1;
 xnHA = xHA+ 0,01*rand(1,11); 
+xHA(1) = 0;
+xHA(end)=1,1;
 
 T=(xnHA(end)-xnHA(1))/length(xnHA);
 rxT = T.*rand(1, length(xnHA))-(T/2);
@@ -30,11 +32,12 @@ ppHA= makima(xnHA,ynHA);
 
 mHA= ppval(ppHA, xRHA);
 
-plot(xRHA,mHA,'r');
+
 
 if noise == 1
     mHA = mHA + 3*rand(1,1001);
     
 end
 
-%plot(xnmak,ynmak,'r'); grid on,title ('Abducción Hombro Malo')
+plot(xRHA,mHA),grid on,title ('Abducción Hombro Malo'), hold on;
+
