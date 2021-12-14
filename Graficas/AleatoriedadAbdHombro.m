@@ -1,4 +1,4 @@
-function [xnHA,ynHA,mHA,xRHA] = AleatoriedadAbdHombro ( noise)
+function [xnHA,ynHA,mHA,xRHA] = AleatoriedadAbdHombro (noise)
 %eje x de la señal
 %xvar = [x0, x1] que indica el valor maximo y minimo del final del eje x
 %y = señal

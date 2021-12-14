@@ -38,11 +38,12 @@ patch('faces',f,'vertices',mano,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',cuello,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',cabeza,'FaceVertexCData',color,'FaceColor','flat')
 
+
 view(3)
 axis image
 %}
 
-%CREAMOS MATRICES DE ROTACION 
+%CREAMOS MATRICES DE ROTACION
 % Aplicamos una rotación del torso de 90 grados hacia la derecha
 % Eso se traduce en un Yaw = -90
 Rhombro = rotationMatrix(YPRhombro(1),YPRhombro(2),YPRhombro(3));
@@ -54,17 +55,18 @@ Rwrist = rotationMatrix(YPRwrist(1),YPRwrist(2),YPRwrist(3));
 manoRotada = applyRotationNx3(applyRotationNx3(applyRotationNx3(mano,...
     sum(antebrazo(1:4,:))/4,Rwrist),sum(brazo(1:4,:))/4,Rcodo),(brazo(7,:)+brazo(8,:))/2,Rhombro);
 
-%LOS DOS PUNTOS SIGNIFICAN, TODOSS LOS PUNTOS EN LA DIMENSION 
+%LOS DOS PUNTOS SIGNIFICAN, TODOSS LOS PUNTOS EN LA DIMENSION
 antebrazoRotado = applyRotationNx3(applyRotationNx3(antebrazo,...
     sum(brazo(1:4,:))/4,Rcodo),(brazo(7,:)+brazo(8,:))/2,Rhombro);
 brazoRotado = applyRotationNx3(brazo,...
     (brazo(7,:)+brazo(8,:))/2,Rhombro);
 
-%LA ROTACION DEL TORSO LA TENGO QUE APLICAR A TODOS MIS COMPONENES 
-%EL APPLYROTATION CONSTA DE : MODEL, MATRIZ DE ROTACION Y CENTRO DE ROTACION 
-%CENTRO DE ROTACION : SUMO LOS PUNTOS / CANTIDAD DE PUNTOS 
-%ENCADENO LOS CENTROS DE ROTACION --> CADENA CINEMATICA 
+%LA ROTACION DEL TORSO LA TENGO QUE APLICAR A TODOS MIS COMPONENES
+%EL APPLYROTATION CONSTA DE : MODEL, MATRIZ DE ROTACION Y CENTRO DE ROTACION
+%CENTRO DE ROTACION : SUMO LOS PUNTOS / CANTIDAD DE PUNTOS
+%ENCADENO LOS CENTROS DE ROTACION --> CADENA CINEMATICA
 figure
+
 patch('faces',f,'vertices',brazoRotado,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',antebrazoRotado,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',manoRotada,'FaceVertexCData',color,'FaceColor','flat')
@@ -72,7 +74,10 @@ patch('faces',f,'vertices',torso,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',cuello,'FaceVertexCData',color,'FaceColor','flat')
 patch('faces',f,'vertices',cabeza,'FaceVertexCData',color,'FaceColor','flat')
 
+
 view(3)
 axis image
+
+
 
 end
