@@ -13,7 +13,7 @@ xRHA = 0:0.001:1;
 ppHA= makima(xHA,yHA);
 
 mHA= ppval(ppHA, xRHA);
-
+figure,
 plot(xRHA,mHA,'r');hold on, grid on,title ('Abducción Hombro')
 plot(xHA,yREF1);hold on
 plot(xHA,yREF2);

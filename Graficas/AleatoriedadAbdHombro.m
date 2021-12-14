@@ -3,21 +3,17 @@ function [xnHA,ynHA,mHA,xRHA] = AleatoriedadAbdHombro ( noise)
 %xvar = [x0, x1] que indica el valor maximo y minimo del final del eje x
 %y = señal
 %yvar = [y0, y1] factor de multiplicacion maximo y minimo
-%points= puntos donde evaluar makima
+%duration= el intervalo de tiempo que va a durar
 %noise = si aplicar rido o no
 
 
 %nueva x
 xHA = 0:0.1:1;
 xnHA = xHA+ 0,01*rand(1,11); 
-xHA(1) = 0;
-xHA(end)=1,1;
+xnHA(1) = 0;
+xnHA(end)=1;
 
-T=(xnHA(end)-xnHA(1))/length(xnHA);
-rxT = T.*rand(1, length(xnHA))-(T/2);
-rxT(1) = 0;
-xnHA=xnHA+rxT;
-
+xRHA = 0:0.001:1;
 
 %nueva y
 yHA = [10,14,19,26,31,33,30,26,21,16,10];
@@ -26,12 +22,13 @@ ynHA(1) = yHA(1);
 ynHA(end) = yHA(end);
 
 %----------------------------
-xRHA = 0:0.001:1;
+maxim= 1.10;
+minim= 0.8;%el rango pongo el que vea apropiado
+duration = minim+(maxim-minim)*rand(1);
 
-ppHA= makima(xnHA,ynHA);
+ppHA= makima(xnHA*duration,ynHA);
 
-mHA= ppval(ppHA, xRHA);
-
+mHA= ppval(ppHA, xRHA*duration);
 
 
 if noise == 1
@@ -39,5 +36,5 @@ if noise == 1
     
 end
 
-plot(xRHA,mHA),grid on,title ('Abducción Hombro Malo'), hold on;
+plot(xRHA*duration,mHA),grid on,title ('Abducción Hombro Malo'), hold on;
 
