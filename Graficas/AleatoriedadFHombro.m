@@ -38,3 +38,11 @@ end
 
 plot(xRHF*duration,mHF),grid on,title ('Flexion Hombro Malo'), hold on;
 
+%Filtrado 
+if noise == 1
+xHFFiltrar = xRHF*duration;
+yHFFiltrar = mHF;
+[Asgolay,window] = smoothdata(yHFFiltrar,'sgolay');
+plot(xHFFiltrar,yHFFiltrar,'c'), hold on, plot(xHFFiltrar,Asgolay,'r')   
+end
+

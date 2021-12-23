@@ -38,3 +38,10 @@ end
 
 plot(xRCF*duration,mCF),grid on,title ('Flexion Codo Malo'), hold on;
 
+%Filtrado 
+if noise == 1
+xCFFiltrar = xRCF*duration;
+yCFFiltrar = mCF;
+[Asgolay,window] = smoothdata(yCFFiltrar,'sgolay');
+plot(xCFFiltrar,yCFFiltrar,'c'), hold on, plot(xCFFiltrar,Asgolay,'r')   
+end

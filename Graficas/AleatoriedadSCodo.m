@@ -32,9 +32,16 @@ mCS= ppval(ppCS, xRCS*duration);
 
 
 if noise == 1
-    mCS = mCS + 3*rand(1,1001);
-    
+    mCS = mCS + 3*rand(1,1001); 
 end
 
 plot(xRCS*duration,mCS),grid on,title ('Supinacion Codo Malo'), hold on;
+
+%Filtrado 
+if noise == 1
+xCSFiltrar = xRCS*duration;
+yCSFiltrar = mCS;
+[Asgolay,window] = smoothdata(yCSFiltrar,'sgolay');
+plot(xCSFiltrar,yCSFiltrar,'c'), hold on, plot(xCSFiltrar,Asgolay,'r')   
+end
 

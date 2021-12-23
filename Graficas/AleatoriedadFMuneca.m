@@ -36,5 +36,12 @@ if noise == 1
     
 end
 
-plot(xRMF*duration,mMF),grid on,title ('Flexion Muñeca Mala'), hold on;
+figure, plot(xRMF*duration,mMF),grid on,title ('Flexion Muñeca Mala'), hold on;
 
+%Filtrado 
+if noise == 1
+xMFFiltrar = xRMF*duration;
+yMFFiltrar = mMF;
+[Asgolay,window] = smoothdata(yMFFiltrar,'sgolay');
+plot(xMFFiltrar,yMFFiltrar,'c'), hold on, plot(xMFFiltrar,Asgolay,'r')   
+end

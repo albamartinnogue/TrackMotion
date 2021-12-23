@@ -22,19 +22,45 @@ ynHA(1) = yHA(1);
 ynHA(end) = yHA(end);
 
 %----------------------------
-maxim= 1.10;
-minim= 0.8;%el rango pongo el que vea apropiado
+maxim= 4; 
+minim= 1;% el rango pongo el que vea apropiado
 duration = minim+(maxim-minim)*rand(1);
 
-ppHA= makima(xnHA*duration,ynHA);
+ppHA= makima(xnHA*duration,ynHA); 
 
 mHA= ppval(ppHA, xRHA*duration);
 
 
 if noise == 1
-    mHA = mHA + 3*rand(1,1001);
-    
+    mHA = mHA + 3*rand(1,1001);    
 end
 
-plot(xRHA*duration,mHA),grid on,title ('Abducción Hombro Malo'), hold on;
+plot(xRHA*duration,mHA),grid on,title ('Abduccion Muñeca Mala'), hold on;
+%{
+GRAFICA ANIMADA
+xx = xRHA*duration;
+yy = mHA;
+%plot(xRHA*duration,mHA),grid on,title ('Abduccion Muñeca Mala'), hold on;
+
+i = 1;
+while i<length(xx) 
+plot(xx(1:i),yy(1:i))
+%plot(xRHA*duration,mHA),grid on,title ('Abduccion Muñeca Mala'), hold on;
+i = i+4;
+pause(0.01)
+end
+%}
+
+%Filtrado 
+if noise == 1
+xHAFiltrar = xRHA*duration;
+yHAFiltrar = mHA;
+[Asgolay,window] = smoothdata(yHAFiltrar,'sgolay');
+plot(xHAFiltrar,yHAFiltrar,'c'), hold on, plot(xHAFiltrar,Asgolay,'r')   
+end
+
+
+
+
+
 
