@@ -44,4 +44,5 @@ yCSFiltrar = mCS;
 [Asgolay,window] = smoothdata(yCSFiltrar,'sgolay');
 plot(xCSFiltrar,yCSFiltrar,'c'), hold on, plot(xCSFiltrar,Asgolay,'r')   
 end
+%hola
 

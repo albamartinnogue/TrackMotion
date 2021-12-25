@@ -45,3 +45,4 @@ yCFFiltrar = mCF;
 [Asgolay,window] = smoothdata(yCFFiltrar,'sgolay');
 plot(xCFFiltrar,yCFFiltrar,'c'), hold on, plot(xCFFiltrar,Asgolay,'r')   
 end
+%hola

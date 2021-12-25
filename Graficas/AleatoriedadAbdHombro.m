@@ -58,7 +58,7 @@ yHAFiltrar = mHA;
 [Asgolay,window] = smoothdata(yHAFiltrar,'sgolay');
 plot(xHAFiltrar,yHAFiltrar,'c'), hold on, plot(xHAFiltrar,Asgolay,'r')   
 end
-
+%hola
 
 
 

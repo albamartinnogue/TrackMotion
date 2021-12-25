@@ -46,3 +46,4 @@ yMAFiltrar = mMA;
 [Asgolay,window] = smoothdata(yMAFiltrar,'sgolay');
 plot(xMAFiltrar,yMAFiltrar,'c'), hold on, plot(xMAFiltrar,Asgolay,'r')   
 end
+%hola

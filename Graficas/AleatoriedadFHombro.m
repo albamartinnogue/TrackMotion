@@ -45,4 +45,4 @@ yHFFiltrar = mHF;
 [Asgolay,window] = smoothdata(yHFFiltrar,'sgolay');
 plot(xHFFiltrar,yHFFiltrar,'c'), hold on, plot(xHFFiltrar,Asgolay,'r')   
 end
-
+%hola
