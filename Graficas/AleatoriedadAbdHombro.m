@@ -35,7 +35,7 @@ if noise == 1
     mHA = mHA + 3*rand(1,1001);    
 end
 
-plot(xRHA*duration,mHA),grid on,title ('Abduccion Muñeca Mala'), hold on;
+plot(xRHA*duration,mHA),grid on,title ('Abduccion Hombro Malo'), hold on;
 %{
 GRAFICA ANIMADA
 xx = xRHA*duration;
@@ -57,10 +57,34 @@ xHAFiltrar = xRHA*duration;
 yHAFiltrar = mHA;
 [Asgolay,window] = smoothdata(yHAFiltrar,'sgolay');
 plot(xHAFiltrar,yHAFiltrar,'c'), hold on, plot(xHAFiltrar,Asgolay,'r')   
+
+%Guardar variables en el workspace 
+%assignin('base','nombre wokspace',variable)
+assignin('base','xHAFiltrar',xHAFiltrar)
+assignin('base','Asgolay',Asgolay)
+x = xHAFiltrar';
+y = Asgolay';
+
+%Escribir en un excel 
+T = table (x, y);
+assignin('base','T',T)
+
+L = {'Variable x','Variable y'};
+C = table2cell(T);
+assignin('base','L',L)
+assignin('base','C',C)
+
+%Concateno en la matriz cell la legenda de cada columna 
+A = [L;C];
+assignin('base','A',A)
+
+%crea y reescribe
+xlswrite('datosAH.xlsx',A,'xlswrite','A2');
+
+
 end
-%hola
 
-
+ 
 
 
 
