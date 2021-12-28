@@ -32,8 +32,7 @@ mCS= ppval(ppCS, xRCS*duration);
 
 
 if noise == 1
-    mCS = mCS + 3*rand(1,1001);
-    
+    mCS = mCS + 3*rand(1,1001); 
 end
 %X = xRCS*duration;
 %Y = mCS;
@@ -47,4 +46,13 @@ plot(senalCodoFiltrada, 'r'),hold on;
 axis([0 1 0 70])
 plot(xRCS*duration,mCS),hold on;
 axis([0 1 0 70]) 
+
+%Filtrado 
+if noise == 1
+xCSFiltrar = xRCS*duration;
+yCSFiltrar = mCS;
+[Asgolay,window] = smoothdata(yCSFiltrar,'sgolay');
+plot(xCSFiltrar,yCSFiltrar,'c'), hold on, plot(xCSFiltrar,Asgolay,'r')   
+end
+%hola
 

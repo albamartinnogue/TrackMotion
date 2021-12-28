@@ -17,7 +17,7 @@ xRMA = 0:0.001:1;
 
 %nueva y
 yMA = [5,6,10,12,15,16,15,12,9,6,5];
-ynMA = yMF + 5*rand(1,11);
+ynMA = yMA + 5*rand(1,11);
 ynMA(1) = yMA(1);
 ynMA(end) = yMA(end);
 
@@ -38,3 +38,12 @@ end
 
 plot(xRMA*duration,mMA),grid on,title ('Abduccion Muñeca Mala'), hold on;
 
+
+%Filtrado 
+if noise == 1
+xMAFiltrar = xRMA*duration;
+yMAFiltrar = mMA;
+[Asgolay,window] = smoothdata(yMAFiltrar,'sgolay');
+plot(xMAFiltrar,yMAFiltrar,'c'), hold on, plot(xMAFiltrar,Asgolay,'r')   
+end
+%hola
