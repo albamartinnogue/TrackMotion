@@ -17,7 +17,7 @@ xRHF = 0:0.001:1;
 
 %nueva y
 yHF = [40,42,45,50,56,60,56,50,45,42,40];
-ynHF = yHF + 5*rand(1,11);
+ynHF = yHF + 3*rand(1,11);
 ynHF(1) = yHF(1);
 ynHF(end) = yHF(end);
 

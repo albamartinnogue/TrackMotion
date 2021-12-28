@@ -1,4 +1,4 @@
-function [xnCS,ynCS,mCS,xRCS] = AleatoriedadSCodo(noise)
+function [xnCS,ynCS,mCS,xRCS] =  AleatoriedadSCodo(noise)
 %eje x de la señal
 %xvar = [x0, x1] que indica el valor maximo y minimo del final del eje x
 %y = señal
@@ -35,6 +35,16 @@ if noise == 1
     mCS = mCS + 3*rand(1,1001);
     
 end
+%X = xRCS*duration;
+%Y = mCS;
 
-plot(xRCS*duration,mCS),grid on,title ('Supinacion Codo Malo'), hold on;
+
+%senalCodo = plot(xRCS*duration,mCS);grid on,title ('Supinacion Codo Malo'), hold on;
+
+[bb,ab] = butter (6, 0.5);
+senalCodoFiltrada = filter(bb,ab,[xRCS*duration,mCS]);
+plot(senalCodoFiltrada, 'r'),hold on;
+axis([0 1 0 70])
+plot(xRCS*duration,mCS),hold on;
+axis([0 1 0 70]) 
 
