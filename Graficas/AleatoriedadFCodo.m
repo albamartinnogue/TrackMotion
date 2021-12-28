@@ -45,4 +45,26 @@ yCFFiltrar = mCF;
 [Asgolay,window] = smoothdata(yCFFiltrar,'sgolay');
 plot(xCFFiltrar,yCFFiltrar,'c'), hold on, plot(xCFFiltrar,Asgolay,'r')   
 end
-%hola
+
+%Guardar variables en el workspace 
+%assignin('base','nombre wokspace',variable)
+assignin('base','xCFFiltrar',xCFFiltrar)
+assignin('base','Asgolay',Asgolay)
+x = xCFFiltrar';
+y = Asgolay';
+
+%Escribir en un excel 
+T = table (x, y);
+assignin('base','T',T)
+
+L = {'Variable x','Variable y'};
+C = table2cell(T);
+assignin('base','L',L)
+assignin('base','C',C)
+
+%Concateno en la matriz cell la legenda de cada columna 
+A = [L;C];
+assignin('base','A',A)
+
+%crea y reescribe
+xlswrite('datosFC.xlsx',A,'xlswrite','A2');
