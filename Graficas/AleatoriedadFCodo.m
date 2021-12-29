@@ -1,70 +1,62 @@
-function [xnCF,ynCF,mCF,xRCF] = AleatoriedadFCodo(noise)
-%eje x de la señal
-%xvar = [x0, x1] que indica el valor maximo y minimo del final del eje x
-%y = señal
-%yvar = [y0, y1] factor de multiplicacion maximo y minimo
-%duration= el intervalo de tiempo que va a durar
-%noise = si aplicar rido o no
+function [xnCF,ynCF,mCF,xRCF] = AleatoriedadFCodo(app,noise)
+            %Creacion grafica
+            xCF = 0:0.1:1;
+            xnCF = xCF+ 0,01*rand(1,11);
+            xnCF(1) = 0;
+            xnCF(end)=1;
+            xRCF = 0:0.001:1;
+            yCF = [67,70,89,108,115,120,115,107,83,72,67];
+            ynCF = yCF + 5*rand(1,11);
+            ynCF(1) = yCF(1);
+            ynCF(end) = yCF(end);
+            maxim= 1.10;
+            minim= 0.8;
+            duration = minim+(maxim-minim)*rand(1);
+            ppCF= makima(xnCF*duration,ynCF);
+            mCF= ppval(ppCF, xRCF*duration);
 
+            if noise == 1
+                mCF = mCF + 3*rand(1,1001);
+                %Filtrado
+                xCFFiltrar = xRCF*duration;
+                yCFFiltrar = mCF;
+                [Asgolay,window] = smoothdata(yCFFiltrar,'sgolay');
+                
+                 %Empezar y acabar con la misma Y
+                Asgolay(1) = yCF(1);
+                Asgolay(end) = yCF(end);
+                
+                %plot(app.FCodo,xCFFiltrar,Asgolay,'r')
 
-%nueva x
-xCF = 0:0.1:1;
-xnCF = xCF+ 0,01*rand(1,11); 
-xnCF(1) = 0;
-xnCF(end)=1;
+                i = 1;
+                while i<length(xCFFiltrar)
+                    plot(app.FCodo,xCFFiltrar(1:i),Asgolay(1:i))
+                    i = i+4;
+                    pause(0.01)
+                end
 
-xRCF = 0:0.001:1;
+                %Guardar variables en el workspace
+                %assignin('base','nombre wokspace',variable)
+                assignin('base','xCFFiltrar',xCFFiltrar)
+                assignin('base','Asgolay',Asgolay)
+                x = xCFFiltrar';
+                y = Asgolay';
 
-%nueva y
-yCF = [67,70,89,108,115,120,115,107,83,72,67];
-ynCF = yCF + 5*rand(1,11);
-ynCF(1) = yCF(1);
-ynCF(end) = yCF(end);
+                %Escribir en un excel
+                T = table (x, y);
+                assignin('base','T',T)
 
-%----------------------------
-maxim= 1.10;
-minim= 0.8;%el rango pongo el que vea apropiado
-duration = minim+(maxim-minim)*rand(1);
+                L = {'Variable x','Variable y'};
+                C = table2cell(T);
+                assignin('base','L',L)
+                assignin('base','C',C)
 
-ppCF= makima(xnCF*duration,ynCF);
+                %Concateno en la matriz cell la legenda de cada columna
+                A = [L;C];
+                assignin('base','A',A)
 
-mCF= ppval(ppCF, xRCF*duration);
+                %crea y reescribe
+                xlswrite('datosCF.xlsx',A,'xlswrite','A2');
 
-
-if noise == 1
-    mCF = mCF + 3*rand(1,1001);
-    
-end
-
-plot(xRCF*duration,mCF),grid on,title ('Flexion Codo Malo'), hold on;
-
-%Filtrado 
-if noise == 1
-xCFFiltrar = xRCF*duration;
-yCFFiltrar = mCF;
-[Asgolay,window] = smoothdata(yCFFiltrar,'sgolay');
-plot(xCFFiltrar,yCFFiltrar,'c'), hold on, plot(xCFFiltrar,Asgolay,'r')   
-end
-
-%Guardar variables en el workspace 
-%assignin('base','nombre wokspace',variable)
-assignin('base','xCFFiltrar',xCFFiltrar)
-assignin('base','Asgolay',Asgolay)
-x = xCFFiltrar';
-y = Asgolay';
-
-%Escribir en un excel 
-T = table (x, y);
-assignin('base','T',T)
-
-L = {'Variable x','Variable y'};
-C = table2cell(T);
-assignin('base','L',L)
-assignin('base','C',C)
-
-%Concateno en la matriz cell la legenda de cada columna 
-A = [L;C];
-assignin('base','A',A)
-
-%crea y reescribe
-xlswrite('datosFC.xlsx',A,'xlswrite','A2');
+            end
+        end
