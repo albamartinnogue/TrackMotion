@@ -1,7 +1,7 @@
-function [xnCF,ynCF,mCF,xRCF] = AleatoriedadFCodo(app,noise)
+function [xnCF,ynCF,yCFF,xCFF] = AleatoriedadFCodo(app,noise, duration)
             %Creacion grafica
             xCF = 0:0.1:1;
-            xnCF = xCF+ 0,01*rand(1,11);
+            xnCF = xCF+ 0.01*rand(1,11);
             xnCF(1) = 0;
             xnCF(end)=1;
             xRCF = 0:0.001:1;
@@ -9,9 +9,9 @@ function [xnCF,ynCF,mCF,xRCF] = AleatoriedadFCodo(app,noise)
             ynCF = yCF + 5*rand(1,11);
             ynCF(1) = yCF(1);
             ynCF(end) = yCF(end);
-            maxim= 1.10;
-            minim= 0.8;
-            duration = minim+(maxim-minim)*rand(1);
+%             maxim= 1.10;
+%             minim= 0.8;
+%             duration = minim+(maxim-minim)*rand(1);
             ppCF= makima(xnCF*duration,ynCF);
             mCF= ppval(ppCF, xRCF*duration);
 
@@ -26,24 +26,30 @@ function [xnCF,ynCF,mCF,xRCF] = AleatoriedadFCodo(app,noise)
                 Asgolay(1) = yCF(1);
                 Asgolay(end) = yCF(end);
                 
+                %Devuelvo por mHA la señal filtrada asgolay para poder
+                %usarla fuera
+                mCF=Asgolay;
+            else
+                Asgolay=mCF;
+            end
                 %plot(app.FCodo,xCFFiltrar,Asgolay,'r')
 
-                i = 1;
-                while i<length(xCFFiltrar)
-                    plot(app.FCodo,xCFFiltrar(1:i),Asgolay(1:i))
-                    i = i+4;
-                    pause(0.01)
-                end
+%                 i = 1;
+%                 while i<length(xCFFiltrar)
+%                     plot(app.FCodo,xCFFiltrar(1:i),Asgolay(1:i))
+%                     i = i+4;
+%                     pause(0.01)
+%                 end
 
                 %Guardar variables en el workspace
                 %assignin('base','nombre wokspace',variable)
                 assignin('base','xCFFiltrar',xCFFiltrar)
                 assignin('base','Asgolay',Asgolay)
-                x = xCFFiltrar';
-                y = Asgolay';
+                xCFF = xCFFiltrar';
+                yCFF = Asgolay';
 
                 %Escribir en un excel
-                T = table (x, y);
+                T = table (xCFF, yCFF);
                 assignin('base','T',T)
 
                 L = {'Variable x','Variable y'};
@@ -59,4 +65,3 @@ function [xnCF,ynCF,mCF,xRCF] = AleatoriedadFCodo(app,noise)
                 xlswrite('datosCF.xlsx',A,'xlswrite','A2');
 
             end
-        end

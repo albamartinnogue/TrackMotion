@@ -1,7 +1,7 @@
-function [xnHA,ynHA,mHA,xRHA] = AleatoriedadAbdHombro (app,noise)
+function [xnHA,ynHA,yHAF,xHAF] = AleatoriedadAbdHombro (app,noise, duration)
             %Cracion grafica
             xHA = 0:0.1:1;
-            xnHA = xHA+ 0,01*rand(1,11);
+            xnHA = xHA+ 0.01*rand(1,11);
             xnHA(1) = 0;
             xnHA(end)=1;
             xRHA = 0:0.001:1;
@@ -9,9 +9,9 @@ function [xnHA,ynHA,mHA,xRHA] = AleatoriedadAbdHombro (app,noise)
             ynHA = yHA + 5*rand(1,11);
             ynHA(1) = yHA(1);
             ynHA(end) = yHA(end);
-            maxim= 4;
-            minim= 1;% el rango pongo el que vea apropiado
-            duration = minim+(maxim-minim)*rand(1);
+%             maxim= 4;
+%             minim= 1;% el rango pongo el que vea apropiado
+%             duration = minim+(maxim-minim)*rand(1);
             ppHA= makima(xnHA*duration,ynHA);
             mHA= ppval(ppHA, xRHA*duration);
 
@@ -28,24 +28,31 @@ function [xnHA,ynHA,mHA,xRHA] = AleatoriedadAbdHombro (app,noise)
                 Asgolay(1) = yHA(1);
                 Asgolay(end) = yHA(end);
                 
+                %Devuelvo por mHA la señal filtrada asgolay para poder
+                %usarla fuera
+                mHA=Asgolay;
+            else
+                Asgolay=mHA;
+            end
                 %plot(app.AHombro,xHAFiltrar,Asgolay,'r')
 
-                i = 1;
+                %i = 1;
+                %{
                 while i<length(xHAFiltrar)
                     plot(app.AHombro,xHAFiltrar(1:i),Asgolay(1:i))
                     i = i+4;
                     pause(0.01)
                 end
-
+%}
                 %Guardar variables en el workspace
                 %assignin('base','nombre wokspace',variable)
                 assignin('base','xHAFiltrar',xHAFiltrar)
                 assignin('base','Asgolay',Asgolay)
-                x = xHAFiltrar';
-                y = Asgolay';
+                xHAF = xHAFiltrar';
+                yHAF = Asgolay';
 
                 %Escribir en un excel
-                T = table (x, y);
+                T = table (xHAF, yHAF);
                 assignin('base','T',T)
 
                 L = {'Variable x','Variable y'};
@@ -62,7 +69,6 @@ function [xnHA,ynHA,mHA,xRHA] = AleatoriedadAbdHombro (app,noise)
 
 
             end
-        end
  
 
 
