@@ -1,5 +1,5 @@
 function [xnHA,ynHA,yHAF,xHAF] = AleatoriedadAbdHombro (app,noise, duration)
-            %Cracion grafica
+            %Cracion graficas
             xHA = 0:0.1:1;
             xnHA = xHA+ 0.01*rand(1,11);
             xnHA(1) = 0;
