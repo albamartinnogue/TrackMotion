@@ -1,4 +1,4 @@
-function [xnMF,ynMF,yMFF,xMFF] = AleatoriedadFMuneca(app,noise, duration)
+function [xnMF,ynMF,yMFF,xMFF] = AleatoriedadFMuneca(app,noise, duration, metrica)
             %Creacion grafica
             xMF = 0:0.1:1;
             xnMF = xMF+ 0.01*rand(1,11);
@@ -61,7 +61,17 @@ function [xnMF,ynMF,yMFF,xMFF] = AleatoriedadFMuneca(app,noise, duration)
                 A = [L;C];
                 assignin('base','A',A)
 
+               
+                if (metrica == 't')  %tiempo 
                 %crea y reescribe
                 xlswrite('datosMF.xlsx',A,'xlswrite','A2');
+               
+                elseif (metrica == 'c') %cantidad
+                xlswrite('datosMFC.xlsx',A,'xlswrite','A2');
+                
+                else (metrica == 'cl') %calidad    
+                xlswrite('datosMFCl.xlsx',A,'xlswrite','A2');
+                
+                end
 
             end

@@ -1,4 +1,4 @@
-function [xnCF,ynCF,yCFF,xCFF] = AleatoriedadFCodo(app,noise, duration)
+function [xnCF,ynCF,yCFF,xCFF] = AleatoriedadFCodo(app,noise, duration, metrica)
             %Creacion grafica
             xCF = 0:0.1:1;
             xnCF = xCF+ 0.01*rand(1,11);
@@ -61,7 +61,17 @@ function [xnCF,ynCF,yCFF,xCFF] = AleatoriedadFCodo(app,noise, duration)
                 A = [L;C];
                 assignin('base','A',A)
 
+              
+                if (metrica == 't')  %tiempo 
                 %crea y reescribe
                 xlswrite('datosCF.xlsx',A,'xlswrite','A2');
+               
+                elseif (metrica == 'c') %cantidad
+                xlswrite('datosCFC.xlsx',A,'xlswrite','A2');
+                
+                else (metrica == 'cl') %calidad    
+                xlswrite('datosCFCl.xlsx',A,'xlswrite','A2');
+                
+                end
 
             end

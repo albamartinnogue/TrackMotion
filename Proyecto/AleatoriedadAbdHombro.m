@@ -1,4 +1,4 @@
-function [xnHA,ynHA,yHAF,xHAF] = AleatoriedadAbdHombro (app,noise, duration)
+function [xnHA,ynHA,yHAF,xHAF] = AleatoriedadAbdHombro (app, noise, duration, metrica)
             %Cracion graficas
             xHA = 0:0.1:1;
             xnHA = xHA+ 0.01*rand(1,11);
@@ -63,10 +63,18 @@ function [xnHA,ynHA,yHAF,xHAF] = AleatoriedadAbdHombro (app,noise, duration)
                 %Concateno en la matriz cell la legenda de cada columna
                 A = [L;C];
                 assignin('base','A',A)
-
+                
+                if (metrica == 't')  %tiempo 
                 %crea y reescribe
                 xlswrite('datosHA.xlsx',A,'xlswrite','A2');
-
+               
+                elseif (metrica == 'c') %cantidad
+                xlswrite('datosHAC.xlsx',A,'xlswrite','A2');
+                
+                else (metrica == 'cl') %calidad    
+                xlswrite('datosHACl.xlsx',A,'xlswrite','A2');
+                
+                end
 
             end
  

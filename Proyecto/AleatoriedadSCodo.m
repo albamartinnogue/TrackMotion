@@ -1,4 +1,4 @@
-function [xnCS,ynCS,yCSF,xCSF] =  AleatoriedadSCodo(app,noise, duration)
+function [xnCS,ynCS,yCSF,xCSF] =  AleatoriedadSCodo(app,noise, duration, metrica)
 
             %Creacion grafica
             xCS = 0:0.1:1;
@@ -63,7 +63,17 @@ function [xnCS,ynCS,yCSF,xCSF] =  AleatoriedadSCodo(app,noise, duration)
                 A = [L;C];
                 assignin('base','A',A)
 
+                
+                if (metrica == 't')  %tiempo 
                 %crea y reescribe
                 xlswrite('datosCS.xlsx',A,'xlswrite','A2');
+               
+                elseif (metrica == 'c') %cantidad
+                xlswrite('datosCSC.xlsx',A,'xlswrite','A2');
+                
+                else (metrica == 'cl') %calidad    
+                xlswrite('datosCSCl.xlsx',A,'xlswrite','A2');
+                
+                end
 
             end

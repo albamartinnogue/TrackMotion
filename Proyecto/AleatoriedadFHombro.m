@@ -1,4 +1,4 @@
-function [xnHF,ynHF,yHFF,xHFF] = AleatoriedadFHombro (app, noise, duration)
+function [xnHF,ynHF,yHFF,xHFF] = AleatoriedadFHombro (app, noise, duration, metrica)
             %Creacion de la grafica
             xHF = 0:0.1:1;
             xnHF = xHF+ 0.01*rand(1,11);
@@ -61,7 +61,17 @@ function [xnHF,ynHF,yHFF,xHFF] = AleatoriedadFHombro (app, noise, duration)
                 A = [L;C];
                 assignin('base','A',A)
 
+                
+                if (metrica == 't')  %tiempo 
                 %crea y reescribe
                 xlswrite('datosHF.xlsx',A,'xlswrite','A2');
+               
+                elseif (metrica == 'c') %cantidad
+                xlswrite('datosHFC.xlsx',A,'xlswrite','A2');
+                
+                else (metrica == 'cl') %calidad    
+                xlswrite('datosHFCl.xlsx',A,'xlswrite','A2');
+                
+                end
 
             end

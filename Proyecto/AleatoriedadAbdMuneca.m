@@ -1,4 +1,4 @@
-function [xnMA,ynMA,yMAF,xMAF] = AleatoriedadAbdMuneca(app,noise, duration)
+function [xnMA,ynMA,yMAF,xMAF] = AleatoriedadAbdMuneca(app,noise, duration, metrica)
             %Creacion grafica
             xMA = 0:0.1:1;
             xnMA = xMA+ 0.01*rand(1,11);
@@ -60,6 +60,16 @@ function [xnMA,ynMA,yMAF,xMAF] = AleatoriedadAbdMuneca(app,noise, duration)
                 A = [L;C];
                 assignin('base','A',A)
 
+                
+                if (metrica == 't')  %tiempo 
                 %crea y reescribe
                 xlswrite('datosMA.xlsx',A,'xlswrite','A2');
+               
+                elseif (metrica == 'c') %cantidad
+                xlswrite('datosMAC.xlsx',A,'xlswrite','A2');
+                
+                else (metrica == 'cl') %calidad    
+                xlswrite('datosMACl.xlsx',A,'xlswrite','A2');
+                
+                end
         end
