@@ -1,4 +1,4 @@
-function [mSUP, mINF,xR] = RangosCalidad ( app, yIdeal, duration)
+function [mSUP, mINF] = RangosCalidad ( app, yIdeal, duration)
 
 %Grafica ideal
 %y = [10,14,19,26,31,33,30,26,21,16,10];
