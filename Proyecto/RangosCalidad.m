@@ -1,12 +1,12 @@
-function [mSUP, mINF] = RangosCalidad ( app, yIdeal, duration)
+function [mSUP, mINF] = RangosCalidad ( app, yIdeal, duration, rango)
 
 %Grafica ideal
 %y = [10,14,19,26,31,33,30,26,21,16,10];
 
 x = 0:0.1:1;
 %Rangos
-rSUP = yIdeal + 5;
-rINF= yIdeal - 5;
+rSUP = yIdeal + rango;
+rINF= yIdeal - rango;
 
 xR = 0:0.001:1;
 
